@@ -9,7 +9,7 @@ import vn.teamwork.laptopshop.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User save(User eric);
+    User save(User ghost);
 
     void deleteById(long id);
 
