@@ -8,7 +8,7 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title> Sản Phẩm - Laptopshop</title>
+                    <title> ${product.name} - Laptopshop</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
                     <meta content="" name="keywords">
                     <meta content="" name="description">
@@ -35,13 +35,14 @@
 
                     <!-- Template Stylesheet -->
                     <link href="/client/css/style.css" rel="stylesheet">
-                    <style>
-                        .page-link.disabled {
-                            color: var(--bs-pagination-disabled-color);
-                            pointer-events: none;
-                            background-color: var(--bs-pagination-disabled-bg);
-                        }
-                    </style>
+
+                    <meta name="_csrf" content="${_csrf.token}" />
+                    <!-- default header name is X-CSRF-TOKEN -->
+                    <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+                        rel="stylesheet">
                 </head>
 
                 <body>
@@ -63,226 +64,137 @@
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Danh Sách Sản Phẩm
+                                            <li class="breadcrumb-item active" aria-current="page">Chi Tiết Sản Phẩm
                                             </li>
                                         </ol>
                                     </nav>
                                 </div>
-
-                                <div class="row g-4 fruite">
-                                    <div class="col-12 col-md-4">
-                                        <div class="row g-4">
-                                            <div class="col-12" id="factoryFilter">
-                                                <div class="mb-2"><b>Hãng sản xuất</b></div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-1"
-                                                        value="APPLE">
-                                                    <label class="form-check-label" for="factory-1">Apple</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-2"
-                                                        value="ASUS">
-                                                    <label class="form-check-label" for="factory-2">Asus</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-3"
-                                                        value="LENOVO">
-                                                    <label class="form-check-label" for="factory-3">Lenovo</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-4"
-                                                        value="DELL">
-                                                    <label class="form-check-label" for="factory-4">Dell</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-5"
-                                                        value="LG">
-                                                    <label class="form-check-label" for="factory-5">LG</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="factory-6"
-                                                        value="ACER">
-                                                    <label class="form-check-label" for="factory-6">Acer</label>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-12" id="targetFilter">
-                                                <div class="mb-2"><b>Mục đích sử dụng</b></div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="target-1"
-                                                        value="GAMING">
-                                                    <label class="form-check-label" for="target-1">Gaming</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="target-2"
-                                                        value="SINHVIEN-VANPHONG">
-                                                    <label class="form-check-label" for="target-2">Sinh viên - văn
-                                                        phòng</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="target-3"
-                                                        value="THIET-KE-DO-HOA">
-                                                    <label class="form-check-label" for="target-3">Thiết kế đồ
-                                                        họa</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="target-4"
-                                                        value="MONG-NHE">
-                                                    <label class="form-check-label" for="target-4">Mỏng nhẹ</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="target-5"
-                                                        value="DOANH-NHAN">
-                                                    <label class="form-check-label" for="target-5">Doanh nhân</label>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-12" id="priceFilter">
-                                                <div class="mb-2"><b>Mức giá</b></div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="price-2"
-                                                        value="duoi-10-trieu">
-                                                    <label class="form-check-label" for="price-2">Dưới 10 triệu</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="price-3"
-                                                        value="10-15-trieu">
-                                                    <label class="form-check-label" for="price-3">Từ 10 - 15
-                                                        triệu</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="price-4"
-                                                        value="15-20-trieu">
-                                                    <label class="form-check-label" for="price-4">Từ 15 - 20
-                                                        triệu</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="price-5"
-                                                        value="tren-20-trieu">
-                                                    <label class="form-check-label" for="price-5">Trên 20 triệu</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2"><b>Sắp xếp</b></div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="sort-1"
-                                                        value="gia-tang-dan" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-1">Giá tăng dần</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="sort-2"
-                                                        value="gia-giam-dan" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-2">Giá giảm dần</label>
-                                                </div>
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="sort-3" checked
-                                                        value="gia-nothing" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-3">Không sắp xếp</label>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-12">
-                                                <button
-                                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4"
-                                                    id="btnFilter">
-                                                    Lọc Sản Phẩm
-                                                </button>
+                                <div class="col-lg-8 col-xl-9">
+                                    <div class="row g-4">
+                                        <div class="col-lg-6">
+                                            <div class="border rounded">
+                                                <a href="#">
+                                                    <img src="/images/product/${product.image}"
+                                                        class="img-fluid rounded" alt="Image">
+                                                </a>
                                             </div>
                                         </div>
+                                        <div class="col-lg-6">
+                                            <h4 class="fw-bold mb-3"> ${product.name}</h4>
+                                            <p class="mb-3">${product.factory}</p>
+                                            <h5 class="fw-bold mb-3">
+                                                <fmt:formatNumber type="number" value="${product.price}" /> đ
+
+                                            </h5>
+                                            <div class="d-flex mb-4">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <p class="mb-4">
+                                                ${product.shortDesc}
+                                            </p>
+
+                                            <div class="input-group quantity mb-5" style="width: 100px;">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                        <i class="fa fa-minus"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control form-control-sm text-center border-0" value="1"
+                                                    data-cart-detail-index="0">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- <form action="/add-product-from-view-detail" method="post"
+                                                modelAttribute="product"> -->
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <input class="form-control d-none" type="text" value="${product.id}"
+                                                name="id" />
+
+                                            <input class="form-control d-none" type="text" name="quantity"
+                                                id="cartDetails0.quantity" value="1" />
+                                            <button data-product-id="${product.id}"
+                                                class="btnAddToCartDetail btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
+                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                Add to cart
+                                            </button>
+                                            <!-- </form> -->
+
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <nav>
+                                                <div class="nav nav-tabs mb-3">
+                                                    <button class="nav-link active border-white border-bottom-0"
+                                                        type="button" role="tab" id="nav-about-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#nav-about" aria-controls="nav-about"
+                                                        aria-selected="true">Description</button>
+                                                </div>
+                                            </nav>
+                                            <div class="tab-content mb-5">
+                                                <div class="tab-pane active" id="nav-about" role="tabpanel"
+                                                    aria-labelledby="nav-about-tab">
+                                                    <p>
+                                                        ${product.detailDesc}
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="col-12 col-md-8 text-center">
-                                        <div class="row g-4">
-                                            <c:if test="${totalPages ==  0}">
-                                                <div>Không tìm thấy sản phẩm</div>
-                                            </c:if>
-                                            <c:forEach var="product" items="${products}">
-                                                <div class="col-md-6 col-lg-4">
-                                                    <div class="rounded position-relative fruite-item">
-                                                        <div class="fruite-img">
-                                                            <img src="/images/product/${product.image}"
-                                                                class="img-fluid w-100 rounded-top" alt="">
+                                </div>
+                                <div class="col-lg-4 col-xl-3">
+                                    <div class="row g-4 fruite">
+                                        <div class="col-lg-12">
+
+                                            <div class="mb-4">
+                                                <h4>Categories</h4>
+                                                <ul class="list-unstyled fruite-categorie">
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
+                                                            <span>(3)</span>
                                                         </div>
-                                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                            style="top: 10px; left: 10px;">Laptop
-                                                        </div>
-                                                        <div
-                                                            class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                            <h4 style="font-size: 15px;">
-                                                                <a href="/product/${product.id}">
-                                                                    ${product.name}
-                                                                </a>
-
-                                                            </h4>
-                                                            <p style="font-size: 13px;">
-                                                                ${product.shortDesc}</p>
-                                                            <div
-                                                                class="d-flex  flex-lg-wrap justify-content-center flex-column">
-                                                                <p style="font-size: 15px; text-align: center; width: 100%;"
-                                                                    class="text-dark  fw-bold mb-3">
-                                                                    <fmt:formatNumber type="number"
-                                                                        value="${product.price}" />
-                                                                    đ
-                                                                </p>
-                                                                <form action="/add-product-to-cart/${product.id}"
-                                                                    method="post">
-                                                                    <input type="hidden" name="${_csrf.parameterName}"
-                                                                        value="${_csrf.token}" />
-
-                                                                    <button
-                                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
-
-
-                                            <c:if test="${totalPages > 0}">
-                                                <div class="pagination d-flex justify-content-center mt-5">
-                                                    <li class="page-item">
-                                                        <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                            href="/products?page=${currentPage - 1}${queryString}"
-                                                            aria-label="Previous">
-                                                            <span aria-hidden="true">&laquo;</span>
-                                                        </a>
                                                     </li>
-                                                    <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
-                                                        <li class="page-item">
-                                                            <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
-                                                                href="/products?page=${loop.index + 1}${queryString}">
-                                                                ${loop.index + 1}
-                                                            </a>
-                                                        </li>
-                                                    </c:forEach>
-                                                    <li class="page-item">
-                                                        <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                            href="/products?page=${currentPage + 1}${queryString}"
-                                                            aria-label="Next">
-                                                            <span aria-hidden="true">&raquo;</span>
-                                                        </a>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Dell</a>
+                                                            <span>(5)</span>
+                                                        </div>
                                                     </li>
-
-                                                </div>
-                                            </c:if>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Asus</a>
+                                                            <span>(2)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Acer</a>
+                                                            <span>(8)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Lenovo</a>
+                                                            <span>(5)</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <!-- Single Product End -->
@@ -305,6 +217,9 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
                 </body>
 
                 </html>
